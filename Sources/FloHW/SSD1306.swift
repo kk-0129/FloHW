@@ -1,4 +1,27 @@
-// 𝗙𝗟𝗢 : 𝗗𝗶𝘀𝘁𝗿𝗶𝗯𝘂𝘁𝗲𝗱 𝗛𝗶𝗲𝗿𝗮𝗿𝗰𝗵𝗶𝗰𝗮𝗹 𝗗𝗮𝘁𝗮𝗳𝗹𝗼𝘄 © 𝖪𝖾𝗏𝖾𝗇 𝖪𝖾𝖺𝗋𝗇𝖾𝗒 𝟮𝟬𝟮𝟯
+/*
+ 𝗙𝗟𝗢 : 𝗗𝗶𝘀𝘁𝗿𝗶𝗯𝘂𝘁𝗲𝗱 𝗛𝗶𝗲𝗿𝗮𝗿𝗰𝗵𝗶𝗰𝗮𝗹 𝗗𝗮𝘁𝗮𝗳𝗹𝗼𝘄
+ MIT License
+
+ Copyright (c) 2025 kk-0129
+
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in all
+ copies or substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ SOFTWARE.
+ */
 import Foundation
 import FloBox
 
@@ -12,7 +35,7 @@ protocol SSD1306_Image{
       alt: https://github.com/adafruit/Adafruit_SSD1306/blob/master/Adafruit_SSD1306.cpp
  */
 
-class SSD1306{
+public class SSD1306{
     
     public enum Size{
         case _128x64, _128x32, _96x16
@@ -47,7 +70,7 @@ class SSD1306{
     private var BUFFER2 = [UInt8]() // 8 rows
     
     // MARK: init
-    init(_ i2c:I2C,_ size:Size,_ rst:RPi5.Pin?=nil){
+    public init(_ i2c:I2C,_ size:Size,_ rst:RPi5.Pin?=nil){
         self.i2c = i2c
         self.size = size
         contrast = 128
@@ -66,7 +89,7 @@ class SSD1306{
     }
     
     // MARK: display text
-    func display(strings:[String]){
+    public func display(strings:[String]){
         for row in 0..<strings.count{
             var s = strings[row]
             let n = word_count * 4
@@ -188,7 +211,7 @@ class SSD1306{
         }
     }}}
     
-    var inverted = false
+    public var inverted = false
     
     // MARK: _initialize ..
     private var _init_params: (UInt8,UInt8,UInt8,UInt8) = (0,0,0,0){ didSet{ begin() }}
@@ -267,28 +290,6 @@ class SSD1306{
     private static let VERTICAL_AND_LEFT_HORIZONTAL_SCROLL: UInt8 = 0x2A
     
 }
-
-let EYE_PATTERN_1 = [
-    "  D A S H E R   ",
-    "  ◥◼︎◣      ◢◼︎◤  ",
-    "   ◥◼︎◣    ◢◼︎◤   ",
-    "    ◥◼︎◣  ◢◼︎◤    ",
-    "     ◼︎◼︎◼︎◼︎◼︎◼︎     ",
-    "    ◢◼︎◤  ◥◼︎◣    ",
-    "   ◢◼︎◤    ◥◼︎◣   ",
-    "  ◢◼︎◤      ◥◼︎◣  "
-]
-
-let EYE_PATTERN_2 = [
-    "  D A S H E R   ",
-    "    ◢◼︎◼︎◼︎◼︎◼︎◼︎◣    ",
-    "   ◢◼︎◤    ◥◼︎◣   ",
-    "   ◼︎◼︎      ◼︎◼︎   ",
-    "   ◼︎◼︎      ◼︎◼︎   ",
-    "   ◥◼︎◣    ◢◼︎◤   ",
-    "    ◥◼︎◼︎◼︎◼︎◼︎◼︎◤    ",
-    "                "
-]
 
 // MARK: ■ Font
 class FontCalculator{

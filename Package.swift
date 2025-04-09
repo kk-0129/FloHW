@@ -25,13 +25,6 @@ let package = Package(
             dependencies: [
                 "FloBox",
                 //.product(name:"SwiftyGPIO", package:"SwiftyGPIO")
-            ]),
-        .testTarget(
-            name: "FloHWTests",
-            dependencies: [
-                "FloHW",
-                "FloBox",
-                //.product(name:"SwiftyGPIO", package:"SwiftyGPIO")
-            ]),
+            ])
     ]
 )
