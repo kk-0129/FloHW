@@ -1,6 +1,6 @@
 **[FLO - Distributed Hierarchical Dataflow](https://github.com/kk-0129/Flo)**
 
-Swift package: **FloHW**
+Swift package: **[FloHW](README.md)**
 
 TODO
 
